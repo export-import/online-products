@@ -137,9 +137,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_cdk_table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/cdk/table */ "./node_modules/@angular/cdk/esm5/table.es5.js");
 /* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm5/tree.es5.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _listing_listing_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./listing/listing.component */ "./src/app/listing/listing.component.ts");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/fire */ "./node_modules/@angular/fire/index.js");
+/* harmony import */ var _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/fire/firestore */ "./node_modules/@angular/fire/firestore/index.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _listing_listing_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./listing/listing.component */ "./src/app/listing/listing.component.ts");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+
+
+
+
 
 
 
@@ -158,8 +166,8 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
-                _listing_listing_component__WEBPACK_IMPORTED_MODULE_10__["ListingComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"],
+                _listing_listing_component__WEBPACK_IMPORTED_MODULE_14__["ListingComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -203,10 +211,12 @@ var AppModule = /** @class */ (function () {
                 _angular_cdk_scrolling__WEBPACK_IMPORTED_MODULE_5__["ScrollingModule"],
                 _angular_cdk_table__WEBPACK_IMPORTED_MODULE_6__["CdkTableModule"],
                 _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_7__["CdkTreeModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_11__["AppRoutingModule"]
+                _angular_fire__WEBPACK_IMPORTED_MODULE_9__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_12__["environment"].firebase),
+                _angular_fire_firestore__WEBPACK_IMPORTED_MODULE_10__["AngularFirestoreModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_15__["AppRoutingModule"]
             ],
-            providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
+            providers: [_angular_fire_database__WEBPACK_IMPORTED_MODULE_11__["AngularFireDatabase"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_13__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -250,32 +260,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListingComponent", function() { return ListingComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
+
 
 
 var ListingComponent = /** @class */ (function () {
-    function ListingComponent() {
+    function ListingComponent(db) {
+        this.items = [];
         this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+        this.db = db;
     }
     ListingComponent.prototype.ngOnInit = function () {
-        this.items = [
-            { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-            { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-            { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-            { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-            { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-            { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-            { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-            { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-            { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-            { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' }
-        ];
+        var _this = this;
+        this.db.list("/items").valueChanges().subscribe(function (items) {
+            _this.items = items || [];
+        });
     };
     ListingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'listing-component',
             template: __webpack_require__(/*! ./listing.component.html */ "./src/app/listing/listing.component.html"),
             styles: [__webpack_require__(/*! ./listing.component.css */ "./src/app/listing/listing.component.css")]
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"]])
     ], ListingComponent);
     return ListingComponent;
 }());
@@ -298,7 +305,15 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 var environment = {
-    production: false
+    production: false,
+    firebase: {
+        apiKey: "AIzaSyCh4_gDXNMKT6Fu2iNij45o8lDvpHg85Ng",
+        authDomain: "luxuria-international.firebaseapp.com",
+        databaseURL: "https://luxuria-international.firebaseio.com/",
+        projectId: "luxuria-international",
+        storageBucket: "gs://luxuria-international.appspot.com/",
+        messagingSenderId: "447721828758"
+    }
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -307,7 +322,7 @@ var environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import "zone.js/dist/zone-error";  // Included with Angular CLI.
 
 
 /***/ }),
