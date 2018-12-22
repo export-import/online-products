@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'listing-component',
@@ -11,24 +13,29 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class ListingComponent implements OnInit {
 
     public items: Array<any> = [];
-    public displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     private db: AngularFireDatabase;
+    private dialogOptions = { minWidth: '98%', maxWidth: '98%', height: '95%' };
 
-    constructor(db: AngularFireDatabase, public dialog: MatDialog) {
+    constructor(db: AngularFireDatabase,
+        public dialog: MatDialog,
+        public location: Location,
+        private activeRoute: ActivatedRoute) {
         this.db = db;
     }
 
     public ngOnInit(): void {
         this.db.list("/items").valueChanges().subscribe((items: Array<any>) => {
             this.items = items || [];
+            !!this.activeRoute.snapshot.queryParams.name &&
+                this.openDialog(this.items.find((item) => item.name === this.activeRoute.snapshot.queryParams.name));
         });
     }
 
     public openDialog(item: any): void {
-        const dialogRef = this.dialog.open(DialogComponent, {
-            width: '80%',
-            height: '80%',
-            data: item
-        });
+        if (!!item) {
+            this.location.replaceState("", `?name=${item.name}`);
+            this.dialog.open(DialogComponent, { ...this.dialogOptions, data: item })
+                .afterClosed().toPromise().then(() => this.location.replaceState("", ""));
+        }
     }
 }

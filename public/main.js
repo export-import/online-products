@@ -82,7 +82,7 @@ module.exports = ".sidenav-container {\n    height: 100%;\n}\n  \n.sidenav {\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n    <mat-sidenav #leftDrawer class=\"sidenav\">\n        <mat-toolbar color=\"primary\">Menu</mat-toolbar>\n        <mat-nav-list>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">developer_board</i>\n                Dashboard\n            </a>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">group_work</i>\n                My Organisation\n            </a>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">group</i>\n                My Team\n            </a>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">dashboard</i>\n                Quarters\n            </a>\n        </mat-nav-list>\n    </mat-sidenav>\n    <mat-sidenav-content>\n        <mat-toolbar class=\"mat-primary\" color=\"primary\">\n            <button type=\"button\" mat-icon-button (click)=\"leftDrawer.toggle()\">\n                <mat-icon>menu</mat-icon>\n            </button>\n            <button class=\"title\" mat-stroked-button color=\"basic\">\n                <!-- <mat-icon class=\"material-icons mrxs\">home</mat-icon> -->\n                Luxuria International\n            </button>\n            <span class=\"spacer\"></span>\n            <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n                <mat-icon>more_vert</mat-icon>\n            </button>\n            <mat-menu #menu=\"matMenu\">\n                <button mat-menu-item>\n                    <mat-icon class=\"material-icons txt-blue\">face</mat-icon>\n                    <span class=\"txt-blue\">Profile</span>\n                </button>\n                <button mat-menu-item>\n                    <mat-icon class=\"material-icons txt-blue\">lock</mat-icon>\n                    <span class=\"txt-blue\">Login</span>\n                </button>\n                <button mat-menu-item>\n                    <mat-icon class=\"material-icons txt-blue\">exit_to_app</mat-icon>\n                    <span class=\"txt-blue\">Logout</span>\n                </button>\n            </mat-menu>\n        </mat-toolbar>\n        <mat-progress-bar *ngIf=\"false\" mode=\"indeterminate\"></mat-progress-bar>\n        <div class=\"container mtl mbl\">\n            <router-outlet></router-outlet>\n        </div>\n    </mat-sidenav-content>\n</mat-sidenav-container>"
+module.exports = "<mat-sidenav-container class=\"sidenav-container\">\n    <mat-sidenav #leftDrawer class=\"sidenav\">\n        <mat-toolbar color=\"primary\">Menu</mat-toolbar>\n        <mat-nav-list>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">developer_board</i>\n                Dashboard\n            </a>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">group_work</i>\n                My Organisation\n            </a>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">group</i>\n                My Team\n            </a>\n            <a mat-list-item class=\"txt-blue\" (click)=\"leftDrawer.toggle()\">\n                <i class=\"material-icons txt-blue mrxs\">dashboard</i>\n                Quarters\n            </a>\n        </mat-nav-list>\n    </mat-sidenav>\n    <mat-sidenav-content>\n        <mat-toolbar class=\"mat-primary\" color=\"primary\">\n            <button type=\"button\" mat-icon-button (click)=\"leftDrawer.toggle()\">\n                <mat-icon>menu</mat-icon>\n            </button>\n            <button class=\"title\" mat-stroked-button color=\"basic\">\n                <!-- <mat-icon class=\"material-icons mrxs\">home</mat-icon> -->\n                Luxuria International\n            </button>\n            <span class=\"spacer\"></span>\n            <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n                <mat-icon>more_vert</mat-icon>\n            </button>\n            <mat-menu #menu=\"matMenu\">\n                <button mat-menu-item>\n                    <mat-icon class=\"material-icons txt-blue\">face</mat-icon>\n                    <span class=\"txt-blue\">Profile</span>\n                </button>\n                <button mat-menu-item>\n                    <mat-icon class=\"material-icons txt-blue\">lock</mat-icon>\n                    <span class=\"txt-blue\">Login</span>\n                </button>\n                <button mat-menu-item>\n                    <mat-icon class=\"material-icons txt-blue\">exit_to_app</mat-icon>\n                    <span class=\"txt-blue\">Logout</span>\n                </button>\n            </mat-menu>\n        </mat-toolbar>\n        <mat-progress-bar *ngIf=\"false\" mode=\"indeterminate\"></mat-progress-bar>\n        <div class=\"container mtl\">\n            <router-outlet></router-outlet>\n        </div>\n    </mat-sidenav-content>\n</mat-sidenav-container>"
 
 /***/ }),
 
@@ -326,33 +326,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListingComponent", function() { return ListingComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../dialog/dialog.component */ "./src/app/dialog/dialog.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dialog/dialog.component */ "./src/app/dialog/dialog.component.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
 
 
 
 
 
 var ListingComponent = /** @class */ (function () {
-    function ListingComponent(db, dialog) {
+    function ListingComponent(db, dialog, location, activeRoute) {
         this.dialog = dialog;
+        this.location = location;
+        this.activeRoute = activeRoute;
         this.items = [];
-        this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
+        this.dialogOptions = { minWidth: '98%', maxWidth: '98%', height: '95%' };
         this.db = db;
     }
     ListingComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.db.list("/items").valueChanges().subscribe(function (items) {
             _this.items = items || [];
+            !!_this.activeRoute.snapshot.queryParams.name &&
+                _this.openDialog(_this.items.find(function (item) { return item.name === _this.activeRoute.snapshot.queryParams.name; }));
         });
     };
     ListingComponent.prototype.openDialog = function (item) {
-        var dialogRef = this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_4__["DialogComponent"], {
-            width: '80%',
-            height: '80%',
-            data: item
-        });
+        var _this = this;
+        if (!!item) {
+            this.location.replaceState("", "?name=" + item.name);
+            this.dialog.open(_dialog_dialog_component__WEBPACK_IMPORTED_MODULE_5__["DialogComponent"], tslib__WEBPACK_IMPORTED_MODULE_0__["__assign"]({}, this.dialogOptions, { data: item }))
+                .afterClosed().toPromise().then(function () { return _this.location.replaceState("", ""); });
+        }
     };
     ListingComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -360,7 +369,10 @@ var ListingComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./listing.component.html */ "./src/app/listing/listing.component.html"),
             styles: [__webpack_require__(/*! ./listing.component.css */ "./src/app/listing/listing.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_2__["AngularFireDatabase"], _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatDialog"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_database__WEBPACK_IMPORTED_MODULE_3__["AngularFireDatabase"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]])
     ], ListingComponent);
     return ListingComponent;
 }());
