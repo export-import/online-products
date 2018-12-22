@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { ListingComponent } from "./listing/listing.component";
 import { AppRoutingModule } from './app-routing.module';
 import { DialogComponent } from './dialog/dialog.component';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @NgModule({
     declarations: [
@@ -68,7 +69,10 @@ import { DialogComponent } from './dialog/dialog.component';
         AngularFirestoreModule,
         AppRoutingModule
     ],
-    providers: [AngularFireDatabase],
+    providers: [
+        AngularFireDatabase,
+        AngularFireAuth
+    ],
     bootstrap: [AppComponent],
     entryComponents: [DialogComponent]
 })

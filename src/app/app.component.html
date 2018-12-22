@@ -26,27 +26,12 @@
                 <mat-icon>menu</mat-icon>
             </button>
             <button class="title" mat-stroked-button color="basic">
-                <!-- <mat-icon class="material-icons mrxs">home</mat-icon> -->
                 Luxuria International
             </button>
             <span class="spacer"></span>
-            <button mat-icon-button [matMenuTriggerFor]="menu">
-                <mat-icon>more_vert</mat-icon>
+            <button mat-icon-button (click)="login()">
+                <mat-icon class="material-icons">account_circle</mat-icon>
             </button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>
-                    <mat-icon class="material-icons txt-blue">face</mat-icon>
-                    <span class="txt-blue">Profile</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon class="material-icons txt-blue">lock</mat-icon>
-                    <span class="txt-blue">Login</span>
-                </button>
-                <button mat-menu-item>
-                    <mat-icon class="material-icons txt-blue">exit_to_app</mat-icon>
-                    <span class="txt-blue">Logout</span>
-                </button>
-            </mat-menu>
         </mat-toolbar>
         <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
         <div class="container mtl">
