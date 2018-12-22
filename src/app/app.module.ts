@@ -14,11 +14,13 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { ListingComponent } from "./listing/listing.component";
 import { AppRoutingModule } from './app-routing.module';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        ListingComponent
+        ListingComponent,
+        DialogComponent
     ],
     imports: [
         BrowserModule,
@@ -67,6 +69,7 @@ import { AppRoutingModule } from './app-routing.module';
         AppRoutingModule
     ],
     providers: [AngularFireDatabase],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [DialogComponent]
 })
 export class AppModule { }

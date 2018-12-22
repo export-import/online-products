@@ -25,9 +25,9 @@
             <button type="button" mat-icon-button (click)="leftDrawer.toggle()">
                 <mat-icon>menu</mat-icon>
             </button>
-            <button mat-stroked-button color="basic">
-                <mat-icon class="material-icons mrxs">home</mat-icon>
-                Ogile
+            <button class="title" mat-stroked-button color="basic">
+                <!-- <mat-icon class="material-icons mrxs">home</mat-icon> -->
+                Luxuria International
             </button>
             <span class="spacer"></span>
             <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -49,10 +49,8 @@
             </mat-menu>
         </mat-toolbar>
         <mat-progress-bar *ngIf="false" mode="indeterminate"></mat-progress-bar>
-        <div class="container-fluid">
+        <div class="container mtl mbl">
             <router-outlet></router-outlet>
         </div>
-        <ng-content>
-        </ng-content>
     </mat-sidenav-content>
 </mat-sidenav-container>

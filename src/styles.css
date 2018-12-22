@@ -19,8 +19,11 @@ html, body {
 }
 
 .mtl {
-
     margin-top: 20px;
+}
+
+.mbl {
+    margin-bottom: 20px;
 }
 
 .mtxl {
