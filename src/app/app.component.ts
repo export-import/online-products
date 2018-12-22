@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
+import * as firebase from "firebase";
 
 @Component({
     selector: 'app-root',
@@ -9,13 +10,18 @@ import { DialogComponent } from './dialog/dialog.component';
 })
 export class AppComponent {
 
-    public user: any;
     private dialogOptions = { minWidth: '98%', maxWidth: '98%', height: '70%', disableClose: true };
 
     constructor(public dialog: MatDialog) {
     }
 
     public login(): void {
-        this.dialog.open(DialogComponent, { ...this.dialogOptions, data: { type: "auth"} });
+        this.dialog.open(DialogComponent, {
+            ...this.dialogOptions,
+            data: {
+                type: "auth",
+                user: firebase.auth().currentUser
+            }
+        });
     }
 }

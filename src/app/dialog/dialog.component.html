@@ -1,4 +1,4 @@
-<div *ngIf="data.type === 'details'" class="row">
+<div *ngIf="data?.type === 'details'" class="row">
     <div class="col-lg-12 mtl" style="height:200px;">
         <h1 class="text-center">Details Page</h1>
     </div>
@@ -10,27 +10,40 @@
     </div>
 </div>
 
-<div *ngIf="data.type === 'auth'" class="row">
-    <div class="col-lg-12 text-center">
-        <h1>Login With Social Media</h1>
-    </div>
-    <div class="col-lg-12 mtl text-center">
-        <button class="fb btn col-lg-4" (click)="facebookLogin()">
-            <i class="fa fa-facebook fa-fw"></i>
-            Login with Facebook
-        </button>
-    </div>
-    <div class="col-lg-12 mtl text-center">
-        <button class="google btn col-lg-4" (click)="googleLogin()">
-            <i class="fa fa-google fa-fw"></i>
-            Login with Google
-        </button>
-    </div>
-    <div class="col-lg-12 mtl text-center">
-        <button class="btn btn-warning col-lg-4" (click)="onNoClick()">Go To Homepage</button>
-    </div>
+<div *ngIf="data?.type === 'auth'" class="row">
+    <ng-container *ngIf="!!data?.user">
+        <div class="col-lg-12 text-center mtl">
+            <h1>Hello {{data?.user?.displayName}}!</h1>
+        </div>
+        <div class="col-lg-12 text-center">
+            <h2>{{data?.user?.email}}</h2>
+        </div>
+        <div class="col-lg-12 mtl text-center">
+            <button class="btn btn-danger col-lg-4" (click)="logout()">Logout</button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!data?.user">
+        <div class="col-lg-12 text-center">
+            <h1>Login With Social Media</h1>
+        </div>
+        <div class="col-lg-12 mtl text-center">
+            <button class="fb btn col-lg-4" (click)="facebookLogin()">
+                <i class="fa fa-facebook fa-fw"></i>
+                Login with Facebook
+            </button>
+        </div>
+        <div class="col-lg-12 mtl text-center">
+            <button class="google btn col-lg-4" (click)="googleLogin()">
+                <i class="fa fa-google fa-fw"></i>
+                Login with Google
+            </button>
+        </div>
+        <div class="col-lg-12 mtl text-center">
+            <button class="btn btn-warning col-lg-4" (click)="onNoClick()">Go To Homepage</button>
+        </div>
+    </ng-container>
 </div>
 
-<div *ngIf="!data || !data.type" class="row">
+<div *ngIf="!data || !data?.type" class="row">
     Unspecified Template Type!
 </div>
