@@ -5,10 +5,20 @@
 .sidenav {
     width: 200px;
 }
+
+.mat-toolbar, mat-paginator {
+    height: 45px;
+}
   
-.mat-toolbar.mat-primary {
+.mat-toolbar.header {
     position: sticky;
     top: 0;
+    z-index: 9;
+}
+  
+.mat-toolbar.footer {
+    position: sticky;
+    bottom: 0;
     z-index: 9;
 }
 

@@ -52,3 +52,9 @@ html, body {
 .backdrop {
     background: rgba(0,0,0,.72) !important;
 }
+
+.row > [class*='col-'] {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+}

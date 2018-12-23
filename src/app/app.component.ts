@@ -28,7 +28,7 @@ export class AppComponent {
 
     public login(): void {
         if (!this.utility.isMobile()) {
-            this.userInfoDialogOptions.height = !!firebase.auth().currentUser ? "85%" : "45%";
+            this.userInfoDialogOptions.height = !!firebase.auth().currentUser ? "90%" : "45%";
         }
         this.dialog.open(DialogComponent, {
             ...this.userInfoDialogOptions,

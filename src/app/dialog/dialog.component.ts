@@ -14,7 +14,7 @@ export class DialogComponent {
         @Inject(MAT_DIALOG_DATA) public data: { type: string, user: firebase.User },
         private authService: AuthService) { }
 
-    public onNoClick(): void {
+    public closeDialog(): void {
         this.dialogRef.close();
     }
 
@@ -25,7 +25,7 @@ export class DialogComponent {
         } catch (error) {
             console.log(error.message);
         } finally {
-            this.onNoClick();
+            this.closeDialog();
         }
     }
 
@@ -35,18 +35,18 @@ export class DialogComponent {
         } catch (error) {
             console.log(error.message);
         } finally {
-            this.onNoClick();
+            this.closeDialog();
         }
     }
 
     public async logout(): Promise<any> {
         try {
             await firebase.auth().signOut();
-            this.onNoClick();
+            this.closeDialog();
         } catch (error) {
             console.log(error.message);
         } finally {
-            this.onNoClick();
+            this.closeDialog();
         }
     }
 }
