@@ -14,7 +14,13 @@ export class ListingComponent implements OnInit {
 
     public items: Array<any> = [];
     private db: AngularFireDatabase;
-    private dialogOptions = { minWidth: '98%', maxWidth: '98%', height: '95%', disableClose: true };
+    private dialogOptions = {
+        minWidth: '98%',
+        maxWidth: '98%',
+        height: '95%',
+        backdropClass: "backdrop",
+        disableClose: true
+    };
 
     constructor(db: AngularFireDatabase,
         public dialog: MatDialog,
@@ -86,16 +92,18 @@ export class ListingComponent implements OnInit {
                 "weight": 20.1797
             }
         ];
+        !!this.activeRoute.snapshot.queryParams.__product_name__ &&
+                this.openDialog(this.items.find((item) => item.name === this.activeRoute.snapshot.queryParams.__product_name__));
         // this.db.list("/items").valueChanges().subscribe((items: Array<any>) => {
         //     this.items = items || [];
-        //     !!this.activeRoute.snapshot.queryParams.name &&
-        //         this.openDialog(this.items.find((item) => item.name === this.activeRoute.snapshot.queryParams.name));
+        //     !!this.activeRoute.snapshot.queryParams.__product_name__ &&
+        //         this.openDialog(this.items.find((item) => item.name === this.activeRoute.snapshot.queryParams.__product_name__));
         // });
     }
 
     public openDialog(item: any): void {
         if (!!item) {
-            this.location.replaceState("", `?name=${item.name}`);
+            this.location.replaceState("", `?__product_name__=${item.name}`);
             this.dialog.open(DialogComponent, { ...this.dialogOptions, data: { ...item, type: "details" } })
                 .afterClosed().toPromise().then(() => this.location.replaceState("", ""));
         }

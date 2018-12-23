@@ -1,3 +1,4 @@
+<!-- product details template -->
 <div *ngIf="data?.type === 'details'" class="row">
     <div class="col-lg-12 mtl" style="height:200px;">
         <h1 class="text-center">Details Page</h1>
@@ -9,41 +10,57 @@
         <button class="col-lg-12" mat-raised-button color="warn" (click)="onNoClick()">Back To Products</button>
     </div>
 </div>
+<!-- product details template ends -->
 
+<!-- profile template -->
 <div *ngIf="data?.type === 'auth'" class="row">
-    <ng-container *ngIf="!!data?.user">
-        <div class="col-lg-12 text-center mtl">
-            <h1>Hello {{data?.user?.displayName}}!</h1>
+    <!-- profile details template -->
+    <div class="col-lg-12" *ngIf="!!data?.user">
+        <div class="tile mbl">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <div mat-card-avatar [style.backgroundImage]="'url(' + data?.user?.photoURL + ')'"
+                        [style.backgroundSize]="'cover'"></div>
+                    <mat-card-title>{{data?.user?.displayName}}</mat-card-title>
+                    <mat-card-subtitle>{{data?.user?.email}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image [src]="data?.user?.photoURL" [alt]="data?.user?.displayName">
+                <mat-card-content>
+                    <button class="btn btn-primary col-lg-5" (click)="onNoClick()">Home Page</button>
+                    <button class="btn btn-danger offset-lg-2 col-lg-5 mtl" (click)="logout()">Logout</button>
+                </mat-card-content>
+            </mat-card>
         </div>
-        <div class="col-lg-12 text-center">
-            <h2>{{data?.user?.email}}</h2>
-        </div>
-        <div class="col-lg-12 mtl text-center">
-            <button class="btn btn-danger col-lg-4" (click)="logout()">Logout</button>
-        </div>
-    </ng-container>
+    </div>
+    <!-- profile details template ends -->
+
+    <!-- user login template -->
     <ng-container *ngIf="!data?.user">
         <div class="col-lg-12 text-center">
-            <h1>Login With Social Media</h1>
+            <h2>Login With Social Media</h2>
         </div>
         <div class="col-lg-12 mtl text-center">
-            <button class="fb btn col-lg-4" (click)="facebookLogin()">
+            <button class="fb btn col-lg-12" (click)="facebookLogin()">
                 <i class="fa fa-facebook fa-fw"></i>
                 Login with Facebook
             </button>
         </div>
         <div class="col-lg-12 mtl text-center">
-            <button class="google btn col-lg-4" (click)="googleLogin()">
+            <button class="google btn col-lg-12" (click)="googleLogin()">
                 <i class="fa fa-google fa-fw"></i>
                 Login with Google
             </button>
         </div>
         <div class="col-lg-12 mtl text-center">
-            <button class="btn btn-warning col-lg-4" (click)="onNoClick()">Go To Homepage</button>
+            <button class="btn btn-warning col-lg-12" (click)="onNoClick()">Go To Homepage</button>
         </div>
     </ng-container>
+    <!-- user login template ends -->
 </div>
+<!-- profile template ends -->
 
+<!-- default template -->
 <div *ngIf="!data || !data?.type" class="row">
     Unspecified Template Type!
 </div>
+<!-- default template ends -->

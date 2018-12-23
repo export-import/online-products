@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
 import * as firebase from "firebase";
+import { UtilityService } from './services/utility.service';
 
 @Component({
     selector: 'app-root',
@@ -10,14 +11,27 @@ import * as firebase from "firebase";
 })
 export class AppComponent {
 
-    private dialogOptions = { minWidth: '98%', maxWidth: '98%', height: '70%', disableClose: true };
+    private userInfoDialogOptions = {
+        minWidth: '98%',
+        maxWidth: '98%',
+        height: '95%',
+        backdropClass: "backdrop",
+        disableClose: true
+    };
 
-    constructor(public dialog: MatDialog) {
+    constructor(public dialog: MatDialog, public utility: UtilityService) {
+        if (!utility.isMobile()) {
+            this.userInfoDialogOptions.minWidth = "30%";
+            this.userInfoDialogOptions.maxWidth = "30%";
+        }
     }
 
     public login(): void {
+        if (!this.utility.isMobile()) {
+            this.userInfoDialogOptions.height = !!firebase.auth().currentUser ? "85%" : "45%";
+        }
         this.dialog.open(DialogComponent, {
-            ...this.dialogOptions,
+            ...this.userInfoDialogOptions,
             data: {
                 type: "auth",
                 user: firebase.auth().currentUser

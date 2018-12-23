@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import * as firebase from "firebase";
 
 @Component({
@@ -21,8 +21,9 @@ export class DialogComponent {
     public async facebookLogin(): Promise<any> {
         try {
             await this.authService.facebook();
+            console.log(JSON.stringify(firebase.auth().currentUser, null, 4));
         } catch (error) {
-            console.log(error.stack);
+            console.log(error.message);
         } finally {
             this.onNoClick();
         }
@@ -32,7 +33,7 @@ export class DialogComponent {
         try {
             await this.authService.google();
         } catch (error) {
-            console.log(error.stack);
+            console.log(error.message);
         } finally {
             this.onNoClick();
         }
@@ -43,7 +44,7 @@ export class DialogComponent {
             await firebase.auth().signOut();
             this.onNoClick();
         } catch (error) {
-            console.log(error.stack);
+            console.log(error.message);
         } finally {
             this.onNoClick();
         }
