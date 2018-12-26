@@ -18,7 +18,12 @@
 
 img {
     width: 100%;
+    height: 300px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+mat-card-content > p {
+    height: 63px;
 }

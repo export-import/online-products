@@ -10,10 +10,16 @@
                     <mat-card-title>{{item?.Name}}</mat-card-title>
                     <mat-card-subtitle>{{item?.MainCategory}}</mat-card-subtitle>
                 </mat-card-header>
-                <img mat-card-image [src]="item?.ProductPicUrl" [alt]="item?.Name">
                 <mat-card-content>
+                    <img mat-card-image [src]="item?.ProductPicUrl" [alt]="item?.Name">
                     <h3 class="text-center">Price - {{item?.Price | currency:item?.CurrencyCode}}</h3>
-                    <p>{{item?.Description}}</p>
+		    <p *ngIf="item?.Description.length <= 100">
+		        {{item?.Description}}
+		    </p>
+		    <p *ngIf="item?.Description.length > 100">
+		        {{(item?.Description | slice:0:100)+'...'}}
+			<a [routerLink]="" (click)="flip()">show more</a>
+		    </p>
                 </mat-card-content>
                 <mat-card-actions class="mbl">
                     <button class="col-lg-12" mat-raised-button color="primary" (click)="openDialog(item)">Product Details</button>
